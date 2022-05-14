@@ -1,0 +1,5 @@
+package com.shoestore.Exception;
+
+public class CustNotFoundException extends Exception {
+
+}

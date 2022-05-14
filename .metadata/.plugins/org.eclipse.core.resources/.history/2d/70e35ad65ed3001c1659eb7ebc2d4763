@@ -1,0 +1,29 @@
+package com.shoestore.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import com.shoestore.entity.Customer;
+import com.shoestore.entity.CustomerLogin;
+import com.shoestore.service.CustomerService;
+
+@Controller
+public class CustController {
+	@Autowired
+	private CustomerService customerservice;
+
+	public CustController(CustomerService customerservice) {
+		super();
+		this.customerservice=customerservice;
+		// TODO Auto-generated constructor stub
+	}
+	@GetMapping("/addc")
+	public String showForm1(Model model) {
+		Customer cl=new Customer();
+		model.addAttribute("cust",cl);
+		return "userlogin";
+	}
+	
+}

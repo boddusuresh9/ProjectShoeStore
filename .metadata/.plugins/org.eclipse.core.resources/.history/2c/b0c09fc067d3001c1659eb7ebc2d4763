@@ -1,0 +1,70 @@
+package com.shoestore.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.shoestore.entity.Customer;
+import com.shoestore.entity.CustomerLogin;
+import com.shoestore.service.CustomerLoginService;
+import com.shoestore.service.CustomerService;
+
+@Controller
+
+public class CustomerLoginController {
+	@Autowired
+	private CustomerLoginService customerloginservice;
+	@Autowired
+	private CustomerService customerservice;
+
+	
+	
+	public CustomerLoginController(CustomerLoginService customerloginservice, CustomerService customerservice) {
+		super();
+		this.customerloginservice = customerloginservice;
+		this.customerservice = customerservice;
+	}
+	public CustomerLoginController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	@GetMapping("/add")
+	public String showForm1(Model model) {
+		CustomerLogin cl=new CustomerLogin();
+		model.addAttribute("custlog",cl);
+		return "userlogin";
+	}
+	@PostMapping("/addcustomerLogin")
+	public String addCustomerLogin(@ModelAttribute("custlog") CustomerLogin cl) {
+		customerloginservice.insert(cl);
+		return "userlogin";
+	}
+	
+	
+	
+	@GetMapping("/")
+	public String showForm() {
+		return "main";
+	}
+
+	@GetMapping("/addc")
+	public String showForm2(Model model) {
+		Customer cl = new Customer();
+		model.addAttribute("cust", cl);
+		return "userlogin";
+	}
+
+	@PostMapping("/addcustomer")
+	public String addCustomerLogin(@ModelAttribute("cust") Customer cl) {
+		customerservice.insert(cl);
+		return "userlogin";
+	}
+
+
+}

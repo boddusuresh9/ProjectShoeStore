@@ -1,0 +1,38 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    <%@taglib prefix="f" uri="http://www.springframework.org/tags/form" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<table border=1>
+		<tr>
+			<th>pno</th>
+			<th>Name</th>
+			<th>cost</th>
+			<th>Quantity</th>
+			
+		</tr>
+		<c:forEach var="c" items="${prod}">
+			<tr>
+				<td>${c.pno}</td>
+				<td>${c.name}</td>
+				<td>${c.cost}</td> 
+				<td>${c.quantity}</td>
+			</tr>
+		</c:forEach>
+	</table>
+	
+	<f:form action="./orderproduct" method="post" modelAttribute="op">
+		Product_no:<f:input path="pno" /><br>
+		Customer_id:<f:input path="cno" /><br>
+		<input type="submit" value="Submit">
+	</f:form>
+<a href="./customerhome">customer home</a><br/><br/><br/>
+	
+</body>
+</html>

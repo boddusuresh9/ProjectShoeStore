@@ -1,0 +1,36 @@
+package com.shoestore.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.shoestore.entity.Admin;
+import com.shoestore.entity.Customer;
+import com.shoestore.service.AdminService;
+
+@Controller
+public class AdminController {
+	@Autowired
+	private AdminService adminservice;
+
+	public AdminController(AdminService adminservice) {
+		super();
+		this.adminservice = adminservice;
+	}
+
+	@GetMapping("/addA")
+	public String showForm2(Model model) {
+		Admin a=new Admin();
+		model.addAttribute("admin", a);
+		return "Addadmin";
+	}
+	@PostMapping("/addadmin")
+	public String addCustomerLogin(@ModelAttribute("admin") Admin a) {
+		adminservice.insert(a);
+		return "main";
+	}
+
+}

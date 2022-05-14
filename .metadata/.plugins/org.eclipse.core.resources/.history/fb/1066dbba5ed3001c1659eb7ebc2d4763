@@ -1,0 +1,19 @@
+package com.shoestore.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
+import com.shoestore.service.CustomerService;
+
+@Controller
+public class CustController {
+	@Autowired
+	private CustomerService customerservice;
+
+	public CustController(CustomerService customerservice) {
+		super();
+		this.customerservice=customerservice;
+		// TODO Auto-generated constructor stub
+	}
+	
+}

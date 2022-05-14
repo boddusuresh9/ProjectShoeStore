@@ -1,0 +1,5 @@
+package com.shoestore.controller;
+
+public class CustController {
+
+}

@@ -1,0 +1,11 @@
+package com.shoestore.controller;
+
+import org.springframework.stereotype.Controller;
+
+import com.shoestore.service.CustomerService;
+
+@Controller
+public class CustomerController {
+	private CustomerService customerservice;
+	
+}

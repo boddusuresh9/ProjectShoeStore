@@ -1,0 +1,14 @@
+package com.shoestore.controller;
+
+import com.shoestore.service.ProductService;
+
+public class ProductController {
+	private ProductService productservice;
+
+	public ProductController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+
+}

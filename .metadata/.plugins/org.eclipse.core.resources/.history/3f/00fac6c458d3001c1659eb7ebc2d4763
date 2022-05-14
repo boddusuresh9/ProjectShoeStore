@@ -1,0 +1,52 @@
+package com.shoestore.controller;
+
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.shoestore.entity.Customer;
+import com.shoestore.service.CustomerService;
+
+
+
+@Controller
+public class CustomerController {
+	private CustomerService customerservice;
+	
+	public CustomerController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public CustomerController(CustomerService customerservice) {
+		super();
+		this.customerservice = customerservice;
+	}
+	@GetMapping("/")
+	public String showmain() {
+		return "main";
+	}
+	@GetMapping("/ShowCustomers")
+	public String showcustomers(Model model) {
+		List<Customer> customers=customerservice.getAll();
+		model.addAttribute("custs", customers);
+		return "CustomerList";
+	}
+	@GetMapping("/addc")
+	public String showForm(Model model) {
+		Customer c=new Customer();
+		model.addAttribute("cust",c);
+		return "AddCustomer";
+	}
+	
+
+	@PostMapping("/addcustomer")
+	public String addCustomer(@ModelAttribute("cust")Customer c) {
+		customerservice.insert(c);
+		return "main";
+	}
+	
+}

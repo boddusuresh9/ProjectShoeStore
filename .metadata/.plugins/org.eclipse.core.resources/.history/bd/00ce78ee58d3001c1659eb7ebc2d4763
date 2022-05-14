@@ -1,0 +1,40 @@
+package com.shoestore.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.shoestore.entity.CustomerLogin;
+import com.shoestore.service.CustomerLoginService;
+
+@Controller
+public class CustomerLoginController {
+	@Autowired
+	private CustomerLoginService customerloginservice;
+
+	public CustomerLoginController(CustomerLoginService customerloginservice) {
+		super();
+		this.customerloginservice = customerloginservice;
+	}
+	
+
+	
+	@GetMapping("/addc")
+	public String showForm(Model model) {
+		CustomerLogin cl=new CustomerLogin();
+		model.addAttribute("custlog",cl);
+		return "userlogin";
+	}
+	@PostMapping("/addcustomerLogin")
+	public String addCustomerLogin(@ModelAttribute("custlog") CustomerLogin cl) {
+		customerloginservice.insert(cl);
+		return "userlogin";
+	}
+
+
+}

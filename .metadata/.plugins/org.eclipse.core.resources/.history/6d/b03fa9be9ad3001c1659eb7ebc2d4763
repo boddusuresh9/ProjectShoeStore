@@ -1,0 +1,33 @@
+package com.shoestore.controller;
+
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.shoestore.entity.Customer;
+import com.shoestore.entity.CustomerLogin;
+import com.shoestore.entity.Products;
+import com.shoestore.service.ProductService;
+
+public class ProductController {
+	private ProductService productservice;
+
+	public ProductController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	@GetMapping("/addp")
+	public String showForm1(Model model) {
+		Products p=new Products();
+		model.addAttribute("product",p);
+		return "addproduct";
+	}
+	@PostMapping("/addproduct")
+	public String addCustomerLogin(@ModelAttribute("product") Products p) {
+		productservice.insert(p);
+		return "main";
+	}
+	
+
+}

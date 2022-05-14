@@ -1,0 +1,52 @@
+package com.shoestore.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.shoestore.entity.Customer;
+import com.shoestore.entity.CustomerLogin;
+import com.shoestore.service.CustomerLoginService;
+import com.shoestore.service.CustomerService;
+
+@Controller
+
+public class CustomerLoginController {
+	@Autowired
+	private CustomerLoginService customerloginservice;
+	@Autowired
+	private CustomerService customerservice;
+
+	public CustomerLoginController(CustomerLoginService customerloginservice) {
+		super();
+		this.customerloginservice = customerloginservice;
+	}
+	
+	@GetMapping("/add")
+	public String showForm1(Model model) {
+		CustomerLogin cl=new CustomerLogin();
+		model.addAttribute("custlog",cl);
+		return "userlogin";
+	}
+	@PostMapping("/addcustomerLogin")
+	public String addCustomerLogin(@ModelAttribute("custlog") CustomerLogin cl) {
+		
+		customerloginservice.insert(cl);
+		List<Customer> customers=customerservice.getAll();
+		List<CustomerLogin> customerlog=customerloginservice.getAll();
+		for(int i=0;i<customers.size();i++) {
+			return customers.get(i).getName();
+		}
+		return "userlogin";
+	}
+
+
+}

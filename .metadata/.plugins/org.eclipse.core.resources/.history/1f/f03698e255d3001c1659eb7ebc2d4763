@@ -1,0 +1,10 @@
+package com.shoestore.Exception;
+
+public class CustNotFoundException extends Exception {
+	public CustNotFoundException(String descr) {
+		super(descr);
+		// TODO Auto-generated constructor stub
+	}
+
+
+}

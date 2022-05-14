@@ -1,0 +1,9 @@
+package com.shoestore.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.shoestore.entity.Orderproduct;
+
+public interface OrderproductRepository extends JpaRepository<Orderproduct, Integer>{
+
+}
